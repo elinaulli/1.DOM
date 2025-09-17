@@ -1,10 +1,12 @@
+import Icon from "../img/goblin.png";
 const container = document.querySelector('.game-container');
 export const gameBoard = container.querySelector('.game-board');
 
 
 export const createGoblin = () => {
   const img = document.createElement("img");
-  img.src = "https://raw.githubusercontent.com/netology-code/ahj-homeworks/refs/heads/AHJ-50/dom/pic/goblin.png";
+  // img.src = "https://raw.githubusercontent.com/netology-code/ahj-homeworks/refs/heads/AHJ-50/dom/pic/goblin.png";
+  img.src = Icon;
   img.style.width = "100%";
   img.style.height = "100%";
   return img;
