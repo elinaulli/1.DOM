@@ -1,4 +1,6 @@
- const gameBoard = document.querySelector('.game-board');
+const container = document.querySelector('.game-container');
+export const gameBoard = container.querySelector('.game-board');
+
 
 export const createGoblin = () => {
   const img = document.createElement("img");
