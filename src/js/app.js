@@ -1,6 +1,6 @@
  const gameBoard = document.querySelector('.game-board');
 
-const createGoblin = () => {
+export const createGoblin = () => {
   const img = document.createElement("img");
   img.src = "https://raw.githubusercontent.com/netology-code/ahj-homeworks/refs/heads/AHJ-50/dom/pic/goblin.png";
   img.style.width = "100%";
