@@ -1,30 +1,37 @@
 import Icon from "../img/goblin.png";
-const container = document.querySelector('.game-container');
-export const gameBoard = container.querySelector('.game-board');
+const container = document.querySelector(".game-container");
+const gameBoard = container.querySelector(".game-board");
 
-
-export const createGoblin = () => {
-  const img = document.createElement("img");
-  // img.src = "https://raw.githubusercontent.com/netology-code/ahj-homeworks/refs/heads/AHJ-50/dom/pic/goblin.png";
-  img.src = Icon;
-  img.style.width = "100%";
-  img.style.height = "100%";
-  return img;
+const createCellInBord = () => {
+  for (let i = 0; i < 16; i++) {
+    const cell = document.createElement("div");
+    cell.classList.add("cell");
+    gameBoard.append(cell);
   }
+};
+const createGoblin = () => {
+  const img = document.createElement("img");
+  img.src = Icon;
+  img.classList.add("img-goblin");
+  img.alt = "Гоблин";
+  return img;
+};
 const moveGoblin = (img) => {
-  const holes = gameBoard.children;
-  let currentIndex = Math.floor(Math.random() * holes.length);
-  holes[currentIndex].appendChild(img);
+  const cellsAll = container.querySelectorAll(".cell");
 
-  setInterval(() => {
-    const newIndex = Math.floor(Math.random() * holes.length);
-    if (newIndex !== currentIndex) {
-      holes[newIndex].appendChild(img);
+  function GetIndex() {
+    let currentIndex = 0;
+    const newIndex = Math.floor(Math.random() * cellsAll.length);
+    do {
+      cellsAll[newIndex].append(img);
       currentIndex = newIndex;
-    }
-  }, 1000);
-}; 
-  const initGame = () => {
+    } while (currentIndex !== newIndex);
+  }
+  setInterval(GetIndex, 1000);
+};
+
+const initGame = () => {
+  createCellInBord();
   const goblin = createGoblin();
   moveGoblin(goblin);
 };
