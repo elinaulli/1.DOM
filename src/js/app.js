@@ -2,38 +2,35 @@ import Icon from "../img/goblin.png";
 const container = document.querySelector(".game-container");
 const gameBoard = container.querySelector(".game-board");
 
-const createCellInBord = () => {
+document.addEventListener("DOMContentLoaded", () => {
   for (let i = 0; i < 16; i++) {
     const cell = document.createElement("div");
-    cell.classList.add("cell");
+    cell.className = "cell";
     gameBoard.append(cell);
   }
-};
-const createGoblin = () => {
+
+  const cellAll = Array.from(document.querySelectorAll(".cell"));
+
   const img = document.createElement("img");
   img.src = Icon;
   img.classList.add("img-goblin");
   img.alt = "Гоблин";
-  return img;
-};
-const moveGoblin = (img) => {
-  const cellsAll = container.querySelectorAll(".cell");
 
-  function GetIndex() {
-    let currentIndex = 0;
-    const newIndex = Math.floor(Math.random() * cellsAll.length);
+  let currentIndex = -1;
+
+  function getItem() {
+    let newIndex;
     do {
-      cellsAll[newIndex].append(img);
-      currentIndex = newIndex;
-    } while (currentIndex !== newIndex);
+      newIndex = Math.floor(Math.random() * cellAll.length);
+    } while (newIndex === currentIndex);
+    currentIndex = newIndex;
+    return cellAll[newIndex];
   }
-  setInterval(GetIndex, 1000);
-};
 
-const initGame = () => {
-  createCellInBord();
-  const goblin = createGoblin();
-  moveGoblin(goblin);
-};
+  function moveGoblin() {
+    const item = getItem();
+    item.append(img);
+  }
 
-window.onload = initGame;
+  setInterval(moveGoblin, 1000);
+});
